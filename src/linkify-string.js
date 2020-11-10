@@ -18,16 +18,16 @@ function escapeAttr(href) {
 	return href.replace(/"/g, '&quot;');
 }
 
-function attributesToString(attributes) {
-	if (!attributes) { return ''; }
-	let result = [];
+// function attributesToString(attributes) {
+// 	if (!attributes) { return ''; }
+// 	let result = [];
 
-	for (let attr in attributes) {
-		let val = attributes[attr] + '';
-		result.push(`${attr}="${escapeAttr(val)}"`);
-	}
-	return result.join(' ');
-}
+// 	for (let attr in attributes) {
+// 		let val = attributes[attr] + '';
+// 		result.push(`${attr}="${escapeAttr(val)}"`);
+// 	}
+// 	return result.join(' ');
+// }
 
 function linkifyStr(str, opts = {}) {
 	opts = new Options(opts);
@@ -49,27 +49,14 @@ function linkifyStr(str, opts = {}) {
 		let {
 			formatted,
 			formattedHref,
-			tagName,
-			className,
-			target,
-			attributes,
 		} = opts.resolve(token);
 
-		let link = `<${tagName} href="${escapeAttr(formattedHref)}"`;
-
-		if (className) {
-			link += ` class="${escapeAttr(className)}"`;
+		if (result[result.length - 1].endsWith('](')) {
+			result.push(escapeText(formatted));
+			continue;
 		}
 
-		if (target) {
-			link += ` target="${escapeAttr(target)}"`;
-		}
-
-		if (attributes) {
-			link += ` ${attributesToString(attributes)}`;
-		}
-
-		link += `>${escapeText(formatted)}</${tagName}>`;
+		let link = `[${escapeText(formatted)}](${escapeAttr(formattedHref)})`;
 		result.push(link);
 	}
 

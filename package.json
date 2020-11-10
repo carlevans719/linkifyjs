@@ -1,18 +1,14 @@
 {
-  "name": "linkifyjs",
-  "version": "2.1.9",
+  "name": "linkifyjs-for-md",
+  "version": "3.0.1",
   "description": "Intelligent link recognition, made easy",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/SoapBox/linkifyjs.git"
-  },
   "main": "index.js",
   "scripts": {
     "test": "nyc --reporter=html --reporter=text gulp test",
     "test:ci": "gulp test-ci",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
-  "author": "SoapBox Innovations (@SoapBoxHQ)",
+  "author": "Carl Evans",
   "license": "MIT",
   "keywords": [
     "jquery",
